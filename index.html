@@ -27,8 +27,8 @@
     header{position:sticky;top:0;z-index:80;background:linear-gradient(180deg,rgba(10,15,36,0.6),rgba(10,15,36,0.2));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 8px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:40px;height:40px;border-radius:10px;background:var(--neon);display:flex;align-items:center;justify-content:center;color:var(--bg-dark);font-weight:700;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:contain;display:block}
+    .logo{width:40px;height:auto;border: radius 0;;;background:var(none);display:flex;align-items:center;justify-content:center;color:var(--bg-dark);font-weight:700;overflow:hidden}
+    .logo img{width:100%;height:auto;object-fit:contain;display:block}
     nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
     nav ul li{font-size:14px;color:rgba(255,255,255,0.85)}
     .btn-ghost{padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent}
@@ -58,7 +58,7 @@
     .project .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:end;padding:18px;backdrop-filter: blur(2px)}
 
     /* CTA */
-    .cta{padding:48px;border-radius:12px;background:linear-gradient(90deg, rgba(10,47,191,0.95), rgba(0,200,255,0.9));text-align:center;margin:36px 0}
+    .cta{padding:48px;border-radius:12px;background:linear-gradient(90deg, #0a2fbff2, rgba(0,200,255,0.9));text-align:center;margin:36px 0}
     .cta h2{margin:0 0 8px}
     .cta p{color:rgba(255,255,255,0.95);margin:0 0 18px}
 
@@ -99,7 +99,6 @@
       .hero-left p{font-size:15px}
       .grid{grid-template-columns:1fr}
       .card{padding:16px}
-      .mockup{display:none}
       section{padding:24px 0}
       .cta{padding:28px}
     }
@@ -112,7 +111,7 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo"><img src="Rapha Company Logo isotipo.png" alt="Rafah Agency logo mark" /></div>
+        <div class="logo"><img src="Rapha Company Logo isotipo 2.png" alt="Rafah Agency logo mark" /></div>
         <div>
           <div style="font-weight:700">Agência Rafah</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.6)">Marketing | Performance | Design</div>
@@ -121,7 +120,7 @@
       <nav>
         <ul>
           <li class="muted"><a href="#servicos">Serviços</a></li>
-          <li class="muted"><a href="#projetos">Projetos</a></li>
+          <li class="muted"><a href="#projetos">Sobre</a></li>
           <li class="muted"><a href="#contato">Contato</a></li>
           <li><a class="btn-primary" href="#contato">Solicitar proposta</a></li>
         </ul>
@@ -143,71 +142,396 @@
         </div>
       </div>
 
-      <aside class="hero-right reveal">
-        <div class="mockup card-quick glow">Mockup visual: projetos, anúncios e peças</div>
-      </aside>
+      <aside class="hero-right">
+        <!-- estilos específicos para a animação do mockup -->
+        <style>
+          
+/* MOCKUP FLUTUANTE REAL */
+.mockup {
+  width: 100%;
+  height: 260px;
+  background: none; /* sem fundo */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* deixar a imagem livre */
+  box-shadow: none !important; /* remove sombra */
+}
+
+.mockup-img {
+  width: 120%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+
+  /* animação inicial */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 900ms ease, transform 900ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* quando o .reveal receber .show → ativar animação */
+.mockup.reveal.show .mockup-img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* animação de flutuar contínua */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* garantir animação + transição na imagem do mockup */
+.mockup-img {
+  animation: float 4s ease-in-out infinite;
+  /* já temos opacity/transform/transition definidos acima no mesmo bloco */
+}
+
+/* BOTÃO WHATSAPP — NEON GRADIENT
+   estilos aplicados tanto para .btn-whatsapp (se você adicionar essa classe)
+   quanto para o botão existente #btnWhatsapp para compatibilidade */
+#btnWhatsapp,
+.btn-whatsapp {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0f1730; /* cor escura para combinar */
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 300ms;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ícone com texto/emoji dentro do elemento .wicon (ex: <span class="wicon">📲</span>) */
+#btnWhatsapp .wicon,
+.btn-whatsapp .wicon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* efeito de cobrir com o gradiente ao passar o mouse */
+#btnWhatsapp::after,
+.btn-whatsapp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+  opacity: 0;
+  transition: 300ms;
+  transform: translateY(0);
+  pointer-events: none;
+}
+
+/* ao passar o mouse, o botão fica totalmente com gradiente (com animação suave) */
+#btnWhatsapp:hover::after,
+.btn-whatsapp:hover::after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/* mantém o texto e o ícone acima do brilho */
+#btnWhatsapp span,
+#btnWhatsapp .wicon,
+.btn-whatsapp span,
+.btn-whatsapp .wicon {
+  position: relative;
+  z-index: 10;
+  transition: transform 300ms;
+}
+
+/* opcional: leve elevação do conteúdo ao hover */
+#btnWhatsapp:hover span,
+.btn-whatsapp:hover span,
+#btnWhatsapp:hover .wicon,
+.btn-whatsapp:hover .wicon {
+  transform: translateY(-2px);
+}
+        </style>
+
+<aside class="hero-right">
+  <div class="mockup reveal">
+    <img 
+      class="mockup-img" 
+      src="Agencia Rafah Mockup.png" 
+      alt="Mockup flutuante da Agência Rafah"
+    />
+  </div>
+</aside>
     </section>
 
     <section id="servicos" class="services">
       <h2 class="reveal">Nossos serviços</h2>
-      <p class="muted reveal">Soluções completas para gerar tráfego qualificado, criar identidade e aumentar conversões.</p>
-      <div class="grid" style="margin-top:20px">
-        <div class="card glow reveal">
-          <div class="chip">Tráfego Pago</div>
-          <h3>Campanhas de alta performance</h3>
-          <p class="muted">Google Ads, Meta Ads, Otimização de ROAS e testes A/B.</p>
-        </div>
-        <div class="card glow reveal">
-          <div class="chip">Social Media</div>
-          <h3>Conteúdo e gestão</h3>
-          <p class="muted">Planejamento de conteúdo, produção criativa e crescimento orgânico.</p>
-        </div>
-        <div class="card glow reveal">
-          <div class="chip">Artes para redes</div>
-          <h3>Criação de artes e criativos</h3>
-          <p class="muted">Peças para Instagram, WhatsApp, Facebook e campanhas.</p>
-        </div>
-        <div class="card glow reveal">
-          <div class="chip">Branding</div>
-          <h3>Identidade visual</h3>
-          <p class="muted">Logotipo, identidade e guidelines de marca.</p>
-        </div>
-        <div class="card glow reveal">
-          <div class="chip">Consultoria</div>
-          <h3>Estratégia e mensuração</h3>
-          <p class="muted">Planejamento trimestral, dashboards e OKRs.</p>
-        </div>
-        <div class="card glow reveal">
-          <div class="chip">Gestão</div>
-          <h3>Gerenciamento de contas</h3>
-          <p class="muted">Comunicação com cliente, relatórios e otimizações contínuas.</p>
-        </div>
-      </div>
+      <p class="muted reveal">
+  Soluções completas para impulsionar sua marca com estratégia, criatividade e performance real.
+</p>
+
+<div class="grid" style="margin-top:20px">
+
+  <div class="card glow reveal">
+    <div class="chip">Tráfego Pago</div>
+    <h3>Campanhas que convertem</h3>
+    <p class="muted">Gestão profissional no Google Ads e Meta Ads, com foco em performance, otimização contínua e aumento de resultados.</p>
+  </div>
+
+  <div class="card glow reveal">
+    <div class="chip">Social Media</div>
+    <h3>Gestão de redes sociais</h3>
+    <p class="muted">Planejamento estratégico, calendários, legendas, copy e gerenciamento completo das suas redes.</p>
+  </div>
+
+  <div class="card glow reveal">
+    <div class="chip">Artes para Redes</div>
+    <h3>Criação de artes profissionais</h3>
+    <p class="muted">Criativos, banners, posts, stories e peças para Instagram, WhatsApp, Facebook e campanhas.</p>
+  </div>
+
+  <div class="card glow reveal">
+    <div class="chip">Identidade Visual</div>
+    <h3>Branding & Logo</h3>
+    <p class="muted">Criação de logotipo, identidade visual completa, paleta de cores e manual da marca.</p>
+  </div>
+
+  <div class="card glow reveal">
+    <div class="chip">Consultoria</div>
+    <h3>Direção estratégica</h3>
+    <p class="muted">Análises, auditoria de posicionamento, estruturação de marca e orientação para crescimento.</p>
+  </div>
+
+  <div class="card glow reveal">
+    <div class="chip">Gestão</div>
+    <h3>Gerenciamento de contas</h3>
+    <p class="muted">Acompanhamento profissional, relatórios, otimizações e comunicação direta com o cliente.</p>
+  </div>
+
+</div>
     </section>
 
     <section id="projetos" class="projects">
-      <h2 class="reveal">Projetos — Cases</h2>
-      <p class="muted reveal">Exemplos de peças e campanhas criadas pela equipe.</p>
-      <div class="project-row" style="margin-top:20px">
-        <div class="project reveal" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&q=60&w=1000');background-size:cover;background-position:center">
-          <div class="overlay">
-            <div style="font-weight:700">Campanha X</div>
-            <div class="muted">Aumento de 82% em conversões</div>
-          </div>
-        </div>
-        <div class="project reveal" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&q=60&w=1000');background-size:cover;background-position:center">
-          <div class="overlay">
-            <div style="font-weight:700">Peça Social</div>
-            <div class="muted">Engajamento e alcance orgânico</div>
-          </div>
-        </div>
+      <style>
+      /* mensagem centralizada (animação de entrada usa .reveal/.show já presentes) */
+      .projects .project-message {
+        max-width: 920px;
+        margin: 20px auto 0;
+        padding: 28px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+        color: rgba(255,255,255,0.95);
+        font-size: 16px;
+        line-height: 1.6;
+        box-shadow: 0 10px 30px rgba(2,8,23,0.6);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+
+        /* centralizar texto horizontal e verticalmente */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* pequena "bolha" gradiente que segue o cursor — difusa e moderna */
+      .projects .project-message::before {
+        content: "";
+        position: absolute;
+        /* posição controlada por variáveis --mx / --my (px) ou central por padrão */
+        left: var(--mx, 50%);
+        top: var(--my, 50%);
+        width: 360px;
+        height: 360px;
+        transform: translate(-50%, -50%) scale(1);
+        border-radius: 50%;
+        /* radial gradient sutil e colorido */
+        background: radial-gradient(circle at center,
+        rgba(0,200,255,0.24) 0%,
+        rgba(10,47,191,0.14) 30%,
+        rgba(10,47,191,0.06) 60%,
+        transparent 70%);
+        filter: blur(26px);
+        opacity: 0;
+        transition: opacity 260ms ease, transform 260ms ease, left 120ms linear, top 120ms linear;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        z-index: 0;
+      }
+
+      /* Mostrar o efeito quando a classe .active estiver presente.
+         Não dependemos somente do :hover para permitir controle via JS. */
+      .projects .project-message.active::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.04);
+      }
+
+      @media (max-width:560px){
+        .projects .project-message{padding:20px;font-size:15px}
+        .projects .project-message::before{width:260px;height:260px;filter:blur(22px)}
+      }
+      </style>
+
+      <div class="project-message reveal">
+      Na Agência Rafah, cada ação de marketing nasce de um propósito que impulsiona sua marca e de uma estratégia que entrega resultados concretos.
+      Transformamos ideias em experiências que conectam sua marca ao público certo, combinando criatividade, inovação e análise estratégica. Atuamos para que cada campanha, cada arte e cada ação gere impacto real, destacando sua empresa em meio à concorrência e abrindo novas oportunidades de crescimento. Com a Agência Rafah, você não contrata apenas serviços — investe em resultados que fazem a diferença.
       </div>
+
+      <script>
+      (function () {
+        const el = document.querySelector('.projects .project-message');
+        if (!el) return;
+
+        // distância máxima (px) para manter o efeito ativo mesmo fora do elemento
+        const KEEP_DISTANCE = 220;
+
+        // Atualiza variáveis CSS com a posição do cursor relativa ao elemento
+        function updateVarsFromPoint(clientX, clientY) {
+        const rect = el.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        el.style.setProperty('--mx', x + 'px');
+        el.style.setProperty('--my', y + 'px');
+        }
+
+        // handler usado enquanto o cursor está sobre o elemento
+        function onLocalMove(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        updateVarsFromPoint(clientX, clientY);
+        }
+
+        // calcula a distância "fora" do cursor até o retângulo (0 se dentro)
+        function outsideDistance(rect, x, y) {
+        const dx = Math.max(rect.left - x, 0, x - rect.right);
+        const dy = Math.max(rect.top - y, 0, y - rect.bottom);
+        return Math.hypot(dx, dy);
+        }
+
+        // Listener global usado após mouseleave para monitorar quão longe o cursor foi
+        let globalListener = null;
+        function startGlobalWatch() {
+        if (globalListener) return;
+        globalListener = function (e) {
+          const clientX = e.clientX;
+          const clientY = e.clientY;
+          const rect = el.getBoundingClientRect();
+
+          // atualizar posição da bolha para que ela acompanhe mesmo fora do elemento
+          updateVarsFromPoint(clientX, clientY);
+
+          const dist = outsideDistance(rect, clientX, clientY);
+          if (dist > KEEP_DISTANCE) {
+          el.classList.remove('active');
+          stopGlobalWatch();
+          // reset para centro após remoção (suavemente)
+          el.style.setProperty('--mx', '50%');
+          el.style.setProperty('--my', '50%');
+          }
+        };
+        document.addEventListener('mousemove', globalListener);
+        }
+        function stopGlobalWatch() {
+        if (!globalListener) return;
+        document.removeEventListener('mousemove', globalListener);
+        globalListener = null;
+        }
+
+        // Entrou no bloco: ativar o efeito e usar listener local
+        el.addEventListener('mouseenter', function (e) {
+        el.classList.add('active');
+        stopGlobalWatch();
+        });
+        el.addEventListener('mousemove', onLocalMove);
+        el.addEventListener('touchmove', function (e) {
+        const t = e.touches[0];
+        updateVarsFromPoint(t.clientX, t.clientY);
+        }, { passive: true });
+
+        // Ao sair: não desativar imediatamente.
+        // Começar a observar o cursor globalmente e só remover quando se afastar além do limite.
+        el.addEventListener('mouseleave', function (e) {
+        // manter active por enquanto e iniciar observação global
+        startGlobalWatch();
+        });
+
+        // Toques curtos: exibir a bolha brevemente onde tocou
+        el.addEventListener('touchstart', function (ev) {
+        const t = ev.touches[0];
+        updateVarsFromPoint(t.clientX, t.clientY);
+        el.classList.add('active');
+
+        clearTimeout(el._touchTimer);
+        el._touchTimer = setTimeout(() => {
+          // após tempo, começar a observar posição para remoção suave (no mobile não há cursor,
+          // então apenas centralizamos e deixamos sumir)
+          el.classList.remove('active');
+          el.style.setProperty('--mx', '50%');
+          el.style.setProperty('--my', '50%');
+        }, 1200);
+        }, { passive: true });
+
+        // limpar observadores ao perder o elemento do DOM (segurança)
+        window.addEventListener('pagehide', function () {
+        stopGlobalWatch();
+        el.removeEventListener('mousemove', onLocalMove);
+        });
+      })();
+      </script>
     </section>
 
-<section class="cta">
-  <h2>Pronto para crescer?</h2>
-  <p>Agende uma conversa com nossa equipe e receba um diagnóstico gratuito.</p>
-  <a class="btn-primary" href="#contato">Solicitar proposta</a>
+<section class="cta reveal" id="ctaNeon" style="position:relative;overflow:hidden;">
+  <style>
+    /* minimal CTA: mantém fundo gradiente do retângulo */
+    #ctaNeon{
+      padding:32px;
+      border-radius:12px;
+      text-align:center;
+      margin:36px 0;
+      background: linear-gradient(90deg,#0a2fbf,#00c8ff); /* fundo gradiente */
+      color:var(--white);
+    }
+
+    /* botão: retângulo preto com texto branco; ao hover vira gradiente com texto preto */
+    .btn-neon{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:12px;
+      background:#0f1730;            /* retângulo preto inicial */
+      color:#fff;                   /* texto branco inicial */
+      font-weight:600;
+      border: none;
+      text-decoration: none;
+      cursor:pointer;
+      transition: background 200ms ease, color 200ms ease, transform 160ms ease;
+    }
+
+    .btn-neon:hover,
+    .btn-neon:focus{
+      background: linear-gradient(90deg,#0a2fbf,#00c8ff); /* fundo gradiente ao passar o mouse */
+      color: var(--wh);                             /* letras pretas no hover */
+      transform: translateY(-3px);
+    }
+  </style>
+
+  <h2 style="margin:0 0 8px;font-weight:700">Pronto para crescer?</h2>
+  <p style="margin:0 0 18px">Agende uma conversa com nossa equipe e receba um diagnóstico gratuito.</p>
+
+  <a class="btn-neon" href="#contato">Solicitar proposta</a>
 </section>
 
 <section id="contato" style="padding:32px 0;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);">
@@ -216,7 +540,7 @@
       <h3>Fale com a Agência Rafah</h3>
       <p class="muted">Estamos prontos para criar uma estratégia sob medida para sua empresa.</p>
       <p style="margin-top:12px">E-mail: <strong>jeovagabriel776@gmail.com</strong></p>
-      <p>WhatsApp: <strong>(XX) XXXXX-XXXX</strong></p>
+      <p>WhatsApp: <strong>(55) 99809-3245</strong></p>
     </div>
 
     <form id="formContato" style="flex:1;min-width:260px;background:rgba(255,255,255,0.03);padding:18px;border-radius:12px">
@@ -229,15 +553,34 @@
       <label style="display:block;margin-bottom:8px">Nos conte sobre seu projeto:</label>
       <textarea id="mensagem" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);margin-bottom:12px" placeholder="Nos conte sobre seu projeto."></textarea>
 
-      <button class="btn-primary" id="btnEmail" type="button">Enviar por e-mail</button>
-
-      <button class="btn-secondary" id="btnWhatsapp" type="button" style="margin-top:10px;width:100%;padding:12px;border-radius:8px;background:#25D366;color:#000;font-weight:600;">
-        Entrar em contato pelo WhatsApp
+      <button class="btn-whatsapp" id="btnEmail" type="button">
+        <span class="wicon" aria-hidden="true" style="
+          width:22px;
+          height:22px;
+          display:inline-block;
+          background:linear-gradient(90deg,var(--blue-1),var(--blue-2));
+          -webkit-mask: url('logo-mail.png') no-repeat center / contain;
+          mask: url('logo email.png') no-repeat center / contain;
+          margin-right:8px;
+        "></span>
+        <span>Enviar por e-mail</span>
       </button>
+
+<button class="btn-whatsapp" id="btnWhatsapp" type="button">
+  <span class="wicon" aria-hidden="true" style="
+    width:22px;
+    height:22px;
+    display:inline-block;
+    background:linear-gradient(90deg,var(--blue-1),var(--blue-2));
+    -webkit-mask: url('logo whatsapp.png') no-repeat center / contain;
+    mask: url('logo whatsapp.png') no-repeat center / contain;
+    margin-right:8px;
+  "></span>
+  <span>Entrar em contato pelo WhatsApp</span>
+</button>
     </form>
   </div>
 </section>
-
 
   </main>
 
@@ -247,7 +590,7 @@
         <div style="flex:1;min-width:220px">
           <div style="display:flex;gap:12px;align-items:center">
             <div class="logo">
-              <img src="Rapha Company Logo isotipo.png" alt="Rafah Agency logo mark" />
+              <img src="Rapha Company Logo isotipo 2.png" alt="Rafah Agency logo mark" />
             </div>
             <div style="font-weight:700">Agência Rafah</div>
           </div>
@@ -255,7 +598,7 @@
         </div>
         <div style="flex:1;min-width:220px">
           <div style="font-weight:700;margin-bottom:8px">Serviços</div>
-          <div class="muted">Tráfego Pago<br/>Identidade Visual<br/>Gerenciamento de Rede Sociais<br/>Branding</div>
+          <div class="muted">Tráfego Pago<br/>Social Media<br/>Artes para Redes<br/>Identidade Visual (Branding)<br/>Consultoria Estratégica<br/>Gestão de Contas</div>
         </div>
         <div style="flex:1;min-width:220px">
           <div style="font-weight:700;margin-bottom:8px">Contato</div>
