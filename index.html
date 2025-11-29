@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agência Rafah — Estratégia & Performance</title>
+  <title>Agência Rafah | Marketing e Branding</title>
   <meta name="description" content="Agência Rafah — Marketing digital, tráfego pago, branding e criação de identidade visual e gestão de redes sociais. Propósito que impulsiona. Estratégia que entrega." />
+  <link rel="icon" sizes="16x16 32x32" href="/Rapha Company Logo isotipo 2.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Rapha Company Logo isotipo 2.png">
+<meta property="og:image" content="https://seusite.com/images/invisivel.png">
   <style>
     :root{
       --bg-dark:#0a0f24;
@@ -34,7 +37,7 @@
     .brand{display:flex;align-items:center;gap:12px}
     .logo{width:100px;height:auto;border: radius 0;;;background:var(none);display:flex;align-items:center;justify-content:center;color:var(--bg-dark);font-weight:700;overflow:hidden}
     .logo img{width:100%;height:auto;object-fit:contain;display:block}
-    nav ul{display:flex;gap:10px;align-items:center;margin:0;padding:0;list-style:none} /* reduced gap to "encostar" os itens restantes */
+    nav ul{display:flex;gap:12px;align-items:center;margin:0;padding:0;list-style:none} /* reduced gap to "encostar" os itens restantes */
     nav ul li{font-size:14px;color:rgba(255,255,255,0.85)}
     .btn-ghost{padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent}
     .btn-primary{padding:12px 18px;border-radius:12px;background:var(--neon);display:inline-block;color:var(--bg-dark);font-weight:600;box-shadow:0 6px 18px rgba(10,47,191,0.15);transition:var(--transition)}
@@ -91,10 +94,10 @@
     }
 
     /* === MOBILE: manter tudo em uma linha (como desktop), mas menor para caber === */
-    @media(max-width:506px){
+    @media(max-width:560px){
       :root{--max-width:920px}
       .container{padding:16px}
-      .logo{width:70px;height:70px}
+      .logo{width:auto;height:auto}
       header .nav{padding:0 6px;height:64px}
 
       /* Forçar nav em única linha: sem wrap, reduzir gaps e fontes, permitir overflow visual sem quebrar layout */
@@ -162,8 +165,8 @@
     @media(max-width:360px){
       :root{--max-width:760px}
       .container{padding:10px}
-      .logo{width:70px}
-      nav ul{gap:6px}
+      .logo{width:70}
+      nav ul{gap:12px}
       nav ul li{font-size:10px}
       .btn-primary{padding:7px 8px;font-size:10px}
       .brand > div{font-size:11px}
@@ -368,6 +371,7 @@
 .btn-whatsapp:hover .wicon {
   transform: translateY(-2px);
 }
+
         </style>
 
 <aside class="hero-right">
@@ -384,8 +388,8 @@
   /* Em telas pequenas, colocar o mockup ANTES -> DEPOIS do conteúdo principal:
      como .hero é grid, usamos 'order' para reordenar os itens na versão mobile */
   @media (max-width: 560px) {
-    .hero-left { order: 0; }
-    .hero-right { order: 1; margin-top: 10px; }
+    .hero-left { order: 0; margin-top: 0px;}
+    .hero-right { order: 1; margin-top: 10px; margin-right: 0px; margin-left: 0px; margin-bottom: -20px;}
   }
 </style>
 
@@ -398,6 +402,7 @@
           #servicos .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 10px; }
           #servicos .card { padding: 12px; }
           #servicos .chip { padding: 6px 10px; font-size: 12px; }
+          
         }
       </style>
 
